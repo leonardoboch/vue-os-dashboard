@@ -1,2 +1,2 @@
 # vue-os-dashboard
-A dashboard that retrieves information from the operating system using Vuejs, expressjs and Nodejs
+A dashboard wich receives information from a nodejs server to render it.
