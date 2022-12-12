@@ -20,13 +20,13 @@
                       :search="search"
                   >
                     <template v-slot:[`item.size`]="{ item }">
-                        {{formatSize(item)}}
+                        {{formatSize(item.size)}}
                     </template>
                     <template v-slot:[`item.used`]="{ item }">
-                        {{formatSize(item)}}
+                        {{formatSize(item.used)}}
                     </template>
                     <template v-slot:[`item.available`]="{ item }">
-                        {{formatSize(item)}}
+                        {{formatSize(item.available)}}
                     </template>
                     <template v-slot:[`item.use`]="{ item }">
                         {{`${item.use ? item.use : 0}%`}}
@@ -85,7 +85,7 @@
             }).catch((error => console.log(error)));
           },
           formatSize(item){
-            return utils.formatBytes(item.size);
+            return utils.formatBytes(item);
           }
       },
   
