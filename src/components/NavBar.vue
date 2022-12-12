@@ -58,9 +58,36 @@
       <RamUsage></RamUsage>
     </v-col>
   </v-row>
-  <v-row>
+  <v-row align="center" justify="center">
+    <v-col>
+      <v-btn @click="pid()">
+        Show PID
+      </v-btn>
+    </v-col>
+    <v-col @click="disks()">
+      <v-btn>
+        Show Disks
+      </v-btn>
+    </v-col>
+    <v-col>
+      <v-btn @click="fs()">
+        Show File System
+      </v-btn>
+    </v-col>
+  </v-row>
+  <v-row v-if="showPid">
     <v-col cols="12">
       <PID></PID>
+    </v-col>
+  </v-row>
+  <v-row v-if="showDisks">
+    <v-col cols="12">
+      <DiskList></DiskList>
+    </v-col>
+  </v-row>
+  <v-row v-if="showFS">
+    <v-col>
+      <FileSystemList></FileSystemList>
     </v-col>
   </v-row>
     </v-app>
@@ -73,6 +100,8 @@ import InfoGpu from '@/components/InfoGpu.vue';
 import CpuUsage from '@/components/CpuUsage.vue';
 import RamUsage from '@/components/RamUsage.vue';
 import PID from './PID.vue';
+import DiskList from '@/components/DiskList.vue';
+import FileSystemList from './FileSystemList.vue';
 
 export default {
   name: 'NavBar',
@@ -81,7 +110,9 @@ export default {
     InfoGpu,
     CpuUsage,
     RamUsage,
-    PID
+    PID,
+    DiskList,
+    FileSystemList,
   },
 
   data() {
@@ -89,6 +120,10 @@ export default {
       time: null,
       RAM: null,
       speedCPU: null,
+      pidShow: false,
+      showDisks: false,
+      showPid: false,
+      showFS: false,
     };
   },
   created() {
@@ -148,6 +183,15 @@ export default {
       }
       return '';
     },
+    pid() {
+      this.showPid = !this.showPid;
+    },
+    disks() {
+      this.showDisks = !this.showDisks;
+    },
+    fs() {
+      this.showFS = !this.showFS;
+    }
   },
 };
 </script>
